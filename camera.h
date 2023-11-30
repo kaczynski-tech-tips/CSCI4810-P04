@@ -50,9 +50,28 @@ private:
         return (1.0 - a) * color(1.0, 1.0, 1.0) + a * color(0.5, 0.7, 1.0);
     }
 
+    ray get_ray(int i, int j) const {
+        // get random camera ray
+        auto pixel_center = pixel00 + (i * pixel_delta_u) + (j * pixel_delta_v);
+        auto pixel_sample = pixel_center + pixel_sample_square();
+
+        auto ray_origin = center;
+        auto ray_direction = pixel_sample - ray_origin;
+
+        return ray(ray_origin, ray_direction);
+    }
+
+    vec3 pixel_sample_square() const {
+        // returns random point in square surrounding origin pixel
+        auto px = -0.5 + random_double();
+        auto py = -0.5 + random_double();
+        return (px * pixel_delta_u) + (py * pixel_delta_v);
+    }
+
 public:
     double aspect_ratio = 1.0;
     int image_width = 100;
+    int samples_per_pixel = 10;
 
     void render(const hittable &world)
     {
@@ -65,12 +84,12 @@ public:
             std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
             for (int i = 0; i < image_width; ++i)
             {
-                auto pixel_center = pixel00 + (i * pixel_delta_u) + (j * pixel_delta_v);
-                auto ray_direction = pixel_center - center;
-                ray r(center, ray_direction);
-
-                color pixel_color = ray_color(r, world);
-                write_color(std::cout, pixel_color);
+                color pixel_color(0,0,0);
+                for (int sample = 0; sample < samples_per_pixel; ++sample) {
+                    ray r = get_ray(i, j);
+                    pixel_color += ray_color(r, world);
+                }
+                write_color(std::cout, pixel_color, samples_per_pixel);
             }
         }
 
