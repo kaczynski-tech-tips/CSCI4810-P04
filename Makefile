@@ -6,13 +6,7 @@ LDFLAGS =
 
 BIN =  main_simple	
 
-HFILES = color.h 	\
-	ray.h 		\
-	rtweekend.h 	\
-	vec3.h		\
-	hittable.h 	\
-	hittable_list.h		\
-	sphere.h 
+// HFILES = 
 
 # targets
 all: $(BIN) 
