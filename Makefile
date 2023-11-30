@@ -15,6 +15,7 @@ all : $(BIN)
 
 $(BIN): %: %.o  $(HFILES)
 	$(CC) $(CFLAGS) $@.o -o $@
+	./$(BIN) > out.ppm
 
 clean :
 	-rm -f a.out *.o core atest *.out
