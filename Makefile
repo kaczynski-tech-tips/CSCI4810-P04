@@ -4,7 +4,8 @@ CFLAGS = -g -Wall -std=c++11
 CC = g++
 BIN =  main
 HFILES = vec3.h  \
-		 color.h
+		 color.h \
+		 ray.h
 
 # targets
 all : $(BIN) 
