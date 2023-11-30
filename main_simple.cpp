@@ -80,18 +80,19 @@ int main()
 
 
 	// Render
-	const int max_color = 255;
-	cout << "P3\n"
-		 << image_width << ' ' << image_height << "\n";
-	cout << max_color << "\n";
+	cout << "P4\n" << image_width << ' ' << image_height << "\n255\n";
 
 	for (int j = 0; j < image_height; ++j) {
-		for(int i = 0; i < image_width; ++i) {
+		clog << "\rScanlines remaining: " << (image_height - j) << ' ' << flush;
+		for (int i = 0; i < image_widthl ++i) {
 			auto pixel_center = pixel00_loc + (i * pixel_delta_hor) + (j * pixel_delta_vert);
-			auto ray_dir = pixel_center - origin;
-			ray r (origin, ray_dir);
+			auto ray_direction = pixel_center - origin;
+			ray r(camera_center, ray_direction);
+
+			color pixel_color = ray_color(r, world);
+			write_color(cout, pixel_color);
 		}
 	}
 
-	cerr << "\nDone.\n";
+	clog << "\rDone. \n";	
 }
