@@ -5,7 +5,12 @@ CC = g++
 BIN =  main
 HFILES = vec3.h  \
 		 color.h \
-		 ray.h
+		 ray.h \
+		 rtweekend.h \
+		 hittable.h
+		 hittable_list.h \
+		 sphere.h 
+
 
 # targets
 all : $(BIN) 
