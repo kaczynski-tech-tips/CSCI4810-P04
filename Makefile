@@ -10,9 +10,9 @@ HFILES = color.h 	\
 	ray.h 		\
 	rtweekend.h 	\
 	vec3.h		\
-	sphere.h 	\
 	hittable.h 	\
-	hittable_list.h 
+	hittable_list.h		\
+	sphere.h 
 
 # targets
 all: $(BIN) 
