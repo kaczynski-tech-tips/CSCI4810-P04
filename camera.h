@@ -28,12 +28,12 @@ private:
         auto viewport_u = vec3(viewport_w, 0, 0);
         auto viewport_v = vec3(0, -viewport_h, 0);
 
-        auto pixel_delta_u = viewport_u / image_width;
-        auto pixel_delta_v = viewport_v / image_height;
+        pixel_delta_u = viewport_u / image_width;
+        pixel_delta_v = viewport_v / image_height;
 
         // Locate Upper Pixel
         auto viewport_top_left = center - vec3(0, 0, focal_length) - viewport_u / 2 - viewport_v / 2;
-        auto pixel00 = viewport_top_left + 0.5 * (pixel_delta_u + pixel_delta_v);
+        pixel00 = viewport_top_left + 0.5 * (pixel_delta_u + pixel_delta_v);
     }
 
     color ray_color(const ray &r, const hittable &world) const
