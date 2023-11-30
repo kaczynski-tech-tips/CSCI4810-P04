@@ -21,6 +21,8 @@ P3
 255   0   0	  0 255   0       0   0 255
 255 255   0	255 255 255  	  0   0   0  ---------------------------------*/
 
+using namespace std;
+
 color ray_color(const ray &r, const hittable& world)
 {
 	// return foreground color (ray hits an object )
