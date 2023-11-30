@@ -84,10 +84,10 @@ int main()
 
 	for (int j = 0; j < image_height; ++j) {
 		clog << "\rScanlines remaining: " << (image_height - j) << ' ' << flush;
-		for (int i = 0; i < image_widthl ++i) {
+		for (int i = 0; i < image_width; ++i) {
 			auto pixel_center = pixel00_loc + (i * pixel_delta_hor) + (j * pixel_delta_vert);
 			auto ray_direction = pixel_center - origin;
-			ray r(camera_center, ray_direction);
+			ray r(origin, ray_direction);
 
 			color pixel_color = ray_color(r, world);
 			write_color(cout, pixel_color);
