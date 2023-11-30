@@ -7,9 +7,11 @@ HFILES = vec3.h \
 	 color.h \
 	 ray.h \
 	 rtweekend.h \
+	 interval.h \
+	 camera.h \
 	 hittable.h \
 	 hittable_list.h \
-	 sphere.h 
+	 sphere.h
 
 
 # targets
