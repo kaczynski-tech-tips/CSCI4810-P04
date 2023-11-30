@@ -10,6 +10,8 @@
 // Usings
 
 using std::sqrt;
+using std::make_shared;
+using std::shared_ptr;
 
 // Constants
 

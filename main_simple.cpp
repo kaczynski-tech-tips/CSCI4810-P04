@@ -6,7 +6,7 @@
 #include "rtweekend.h" // vec3.h  : ray.h -- P(t) = A + tb.// at()
 #include "color.h"	   // write_color()
 #include "hittable.h"
-#include "hittables.h"
+#include "hittable_list.h"
 #include "sphere.h"
 
 using namespace std;
@@ -38,10 +38,9 @@ color ray_color(const ray &r, const hittable& world)
 
 	// return background color
 	vec3 unit_direction = unit_vector(r.direction());
-	
-	auto t = 0.5 * (unit_direction.y() + 1.0);
+	auto a = 0.5 * (unit_direction.y() + 1.0);
 	// BLUE blend 1 is white, 0 is no light.1
-	return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
+	return (1.0 - a) * color(1.0, 1.0, 1.0) + a * color(0.5, 0.7, 1.0);
 	// mostly blue
 }
 
@@ -49,10 +48,11 @@ int main()
 {
 	// Image
 	const auto aspect_ratio = 16.0 / 9.0;
-	const int aspect_x = 400;
+	const int image_width = 400;
 
-	const int image_width = aspect_x;
-	const int image_height = static_cast<int>(image_width / aspect_ratio);
+	int image_height = static_cast<int>(image_width / aspect_ratio);
+	image_height = (image_height < 1) ? 1 : image_height;
+	
 
 	// World
 	hittable_list world;
