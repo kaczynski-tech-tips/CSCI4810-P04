@@ -3,13 +3,13 @@ CFLAGS = -g -Wall -std=c++11
 #CFLAGS = -g -std=c++11 -Wdelete-non-abstract-non-virtual-dtor
 CC = g++
 BIN =  main
-HFILES = vec3.h  \
-		 color.h \
-		 ray.h \
-		 rtweekend.h \
-		 hittable.h
-		 hittable_list.h \
-		 sphere.h 
+HFILES = vec3.h \
+	 color.h \
+	 ray.h \
+	 rtweekend.h \
+	 hittable.h \
+	 hittable_list.h \
+	 sphere.h 
 
 
 # targets
