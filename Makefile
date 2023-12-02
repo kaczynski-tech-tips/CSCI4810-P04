@@ -15,6 +15,7 @@ HFILES = vec3.h \
 
 
 # targets
+
 all : $(BIN) 
 
 .cpp.o:
@@ -22,13 +23,14 @@ all : $(BIN)
 
 $(BIN): %: %.o  $(HFILES)
 	$(CC) $(CFLAGS) $@.o -o $@
+	./$(BIN) > out.ppm
 
 clean :
 	-rm -f a.out *.o core atest *.out
 	-rm -f *.class
 	-rm -f $(BIN)
-	rm *.exe
-	-rm -f *.ppm
+	-rm *.exe
+	rm *.ppm
 
 run :
 	./$(BIN) > out.ppm
