@@ -4,6 +4,7 @@
 #include "rtweekend.h"
 #include "color.h"
 #include "hittable.h"
+#include "material.h"
 #include <iostream>
 
 class camera
@@ -67,7 +68,7 @@ private:
         pixel00 = viewport_top_left + 0.5 * (pixel_delta_u + pixel_delta_v);
     }
 
-    color ray_color(const ray& r, int depth, const hittable &world) const
+    color ray_color(const ray& r, int depth, const hittable& world) const
     {
         hit_record rec;
 
@@ -77,9 +78,13 @@ private:
 
         if (world.hit(r, interval(0.001, infinity), rec))
         {
-            vec3 direction = rec.normal + random_unit_vector();
-            return 0.1 * ray_color(ray(rec.p, direction), depth-1, world);
+            ray scattered;
+            color attenuation;
 
+            if (rec.mat ->scatter(r, rec, attenuation, scattered)) {
+                return attenuation * ray_color(scattered, depth-1, world);
+            }
+            return color(0,0,0);
             //return 0.5 *(rec.normal + color(1, 1, 1));
         }
 
