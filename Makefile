@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall -std=c++11 
+CFLAGS = -g -Wall -std=c++11
 #CFLAGS = -g -std=c++11 
 #CFLAGS = -g -std=c++11 -Wdelete-non-abstract-non-virtual-dtor
 CC = g++
@@ -23,7 +23,6 @@ all : $(BIN)
 
 $(BIN): %: %.o  $(HFILES)
 	$(CC) $(CFLAGS) $@.o -o $@
-	./$(BIN) > out.ppm
 
 clean :
 	-rm -f a.out *.o core atest *.out

@@ -105,6 +105,11 @@ inline vec3 operator/(vec3 v, double t)
     return (1 / t) * v;
 }
 
+inline vec3 operator/(const vec3 &u, const vec3 &v)
+{
+    return vec3(u.e[0] / v.e[0], u.e[1] / v.e[1], u.e[2] / v.e[2]);
+}
+
 inline double dot(const vec3 &u, const vec3 &v)
 {
     return u.e[0] * v.e[0] + u.e[1] * v.e[1] + u.e[2] * v.e[2];
@@ -146,6 +151,14 @@ inline vec3 random_on_hemisphere(const vec3& normal) {
 
 vec3 reflect(const vec3& v, const vec3& n) {
     return v - 2*dot(v,n)*n;
+}
+
+vec3 min3(const vec3& a, const vec3& b) {
+    return vec3(std::min(a.e[0], b.e[0]), std::min(a.e[1], b.e[1]), std::min(a.e[2], b.e[2]));
+}
+
+vec3 max3(const vec3& a, const vec3& b) {
+    return vec3(std::max(a.e[0], b.e[0]), std::max(a.e[1], b.e[1]), std::max(a.e[2], b.e[2]));
 }
 
 #endif
