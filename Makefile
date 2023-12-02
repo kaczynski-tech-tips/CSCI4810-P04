@@ -27,6 +27,7 @@ clean :
 	-rm -f a.out *.o core atest *.out
 	-rm -f *.class
 	-rm -f $(BIN)
+	rm *.exe
 	-rm -f *.ppm
 
 run :
